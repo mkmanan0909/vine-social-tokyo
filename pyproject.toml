@@ -1,0 +1,3 @@
+[tool.vercel]
+# Single FastAPI ASGI app; routes use the `/api` prefix (see backend/server.py)
+entrypoint = "backend.server:app"
