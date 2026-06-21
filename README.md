@@ -20,18 +20,40 @@ There is **no database** and **no admin panel**. The API is only for sending ema
 
 ## 🐙 GitHub
 
-1. **Clone** (after you have pushed the repo to your account):
+### First-time publish (from this folder)
+
+You need a GitHub account. **`backend/.env` is never committed** (copy from `.env.example` locally only).
+
+**Option A — GitHub CLI** (install [GitHub CLI](https://cli.github.com/) if needed):
+
+```bash
+gh auth login
+gh repo create vine-social-tokyo --public --source=. --remote=origin --push
+```
+
+Use another repo name if `vine-social-tokyo` is already taken.
+
+**Option B — github.com**
+
+1. Create a **new empty repository** (no README/license) on GitHub.
+2. In this project folder:
 
    ```bash
-   git clone https://github.com/<your-username>/<repo-name>.git
-   cd <repo-name>
+   git remote add origin https://github.com/<your-username>/<repo-name>.git
+   git branch -M main
+   git push -u origin main
    ```
 
-2. **Never commit secrets.** `backend/.env` is gitignored. Copy `.env.example` to `backend/.env` locally and add Gmail **App Password** values (see [Email](#email-gmail-smtp)).
+### Clone (for you or teammates)
 
-3. **Deploy:** In [Vercel](https://vercel.com) → *Add New Project* → *Import Git Repository* → pick this GitHub repo. Root directory stays the **repository root** (where `vercel.json` lives). Add the same SMTP-related variables in Vercel *Environment Variables*.
+```bash
+git clone https://github.com/<your-username>/<repo-name>.git
+cd <repo-name>
+```
 
-4. **Optional:** protect `main`, use pull requests for changes, and turn on Vercel *Production Branch* to match the branch you deploy from.
+1. **Never commit secrets.** `backend/.env` is gitignored. Copy `.env.example` to `backend/.env` locally and add Gmail **App Password** values (see [Email](#email-gmail-smtp)).
+2. **Deploy:** In [Vercel](https://vercel.com) → *Add New Project* → *Import Git Repository* → pick this GitHub repo. Root directory stays the **repository root** (where `vercel.json` lives). Add the same SMTP-related variables in Vercel *Environment Variables*.
+3. **Optional:** protect `main`, use pull requests for changes, and align Vercel’s *Production Branch* with the branch you deploy from.
 
 ---
 
