@@ -61,6 +61,8 @@ cd <repo-name>
 
 ```
 repository-root/
+├── api/
+│   └── index.py            # Vercel Python function — re-exports backend.server:app
 ├── backend/
 │   ├── server.py           # FastAPI app (Vercel entrypoint + local uvicorn)
 │   ├── requirements.txt    # Delegates to root requirements.txt
@@ -78,8 +80,8 @@ repository-root/
 │   ├── package.json
 │   └── …
 ├── requirements.txt        # Python deps for Vercel + local API
-├── pyproject.toml            # [tool.vercel] entrypoint → backend.server:app
-├── vercel.json               # CRA build + SPA rewrites (excludes /api/*)
+├── pyproject.toml            # Local / legacy Vercel hint (production uses api/index.py)
+├── vercel.json               # CRA build + api/index.py rewrite + SPA rewrites
 ├── .env.example              # Copy to backend/.env for local dev
 ├── design_guidelines.json
 └── README.md
@@ -341,7 +343,7 @@ curl -X POST "http://127.0.0.1:8000/api/contact" -H "Content-Type: application/j
 ## 🔄 Deployment (Vercel + GitHub)
 
 1. Push this repository to **GitHub** (empty repo → add `origin` → `git push -u origin main`).
-2. In Vercel: **Add New Project** → **Import** the GitHub repo. Project **Root Directory** = repo root (leave default so `vercel.json` and `pyproject.toml` are used).
+2. In Vercel: **Add New Project** → **Import** the GitHub repo. Project **Root Directory** = repo root (leave default so `vercel.json` and `api/index.py` are used).
 3. Under **Environment Variables**, add **`SMTP_USER`**, **`SMTP_PASSWORD`**, and optionally **`CONTACT_TO_EMAIL`**, **`SMTP_HOST`**, **`SMTP_PORT`**, **`CORS_ORIGINS`** (use your real site URL(s) instead of `*` in production).
 4. Deploy. Leave **`REACT_APP_BACKEND_URL`** unset in the frontend build so the SPA posts to **`/api/contact`** on the same host.
 
