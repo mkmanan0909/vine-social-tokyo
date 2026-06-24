@@ -1,3 +1,8 @@
+[project]
+name = "vine-social-tokyo"
+version = "0.1.0"
+requires-python = ">=3.12"
+
 [tool.vercel]
-# Single FastAPI ASGI app; routes use the `/api` prefix (see backend/server.py)
+# Local hint; production uses api/index.py → backend.server:app
 entrypoint = "backend.server:app"
