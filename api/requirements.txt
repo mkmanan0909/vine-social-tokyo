@@ -1,0 +1,4 @@
+# Installed for the Vercel serverless handler at api/index.py
+fastapi>=0.110,<0.116
+pydantic>=2,<3
+python-dotenv>=1.0,<2

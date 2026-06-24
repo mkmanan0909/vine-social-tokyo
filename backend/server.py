@@ -5,13 +5,16 @@ import smtplib
 from email.message import EmailMessage
 from pathlib import Path
 
-from dotenv import load_dotenv
 from fastapi import APIRouter, FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from starlette.middleware.cors import CORSMiddleware
 
 ROOT_DIR = Path(__file__).resolve().parent
-load_dotenv(ROOT_DIR / ".env")
+_env_file = ROOT_DIR / ".env"
+if _env_file.is_file():
+    from dotenv import load_dotenv
+
+    load_dotenv(_env_file)
 
 logger = logging.getLogger(__name__)
 
