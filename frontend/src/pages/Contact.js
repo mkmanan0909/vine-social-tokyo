@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, MessageSquare } from 'lucide-react';
 import axios from 'axios';
 import { API } from '@/lib/apiBase';
-import { defaultSettings, mapEmbedSrc } from '@/data/siteContent';
+import { defaultSettings, instagramUrl, mapEmbedSrc } from '@/data/siteContent';
 
 const Contact = () => {
   const settings = defaultSettings;
@@ -122,7 +122,7 @@ const Contact = () => {
                 Stay updated with our latest dishes and events on Instagram
               </p>
               <a
-                href={`https://instagram.com/${igHandle}`}
+                href={instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#CBA052] font-light hover:text-[#DBC184] transition-colors"

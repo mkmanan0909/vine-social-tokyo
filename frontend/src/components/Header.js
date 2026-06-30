@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Camera, Mail, Phone } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { brandLogo, defaultSettings } from '@/data/siteContent';
+import { brandLogo, defaultSettings, instagramUrl } from '@/data/siteContent';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,20 +36,14 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 min-w-0 shrink-0" data-testid="header-logo">
+          <Link to="/" className="flex items-center min-w-0 shrink-0" data-testid="header-logo">
             <img
               src={brandLogo}
               alt="Vine Social Tokyo"
-              className="h-9 w-auto sm:h-11 object-contain object-left"
-              width="160"
-              height="44"
+              className="h-11 w-auto sm:h-14 max-w-[200px] sm:max-w-[240px] object-contain object-left"
+              width="240"
+              height="56"
             />
-            <div className="hidden sm:flex flex-col min-w-0">
-              <span className="text-lg sm:text-xl font-heading font-light text-[#F5F2E9] tracking-widest truncate">
-                VINE SOCIAL
-              </span>
-              <span className="text-[10px] sm:text-xs tracking-[0.28em] text-[#A3A199]">TOKYO</span>
-            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -72,7 +66,7 @@ const Header = () => {
 
           {/* Social Icons (Desktop) */}
           <div className="hidden lg:flex items-center space-x-4">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-[#F5F2E9] hover:text-[#CBA052] transition-colors" data-testid="header-instagram">
+            <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="text-[#F5F2E9] hover:text-[#CBA052] transition-colors" data-testid="header-instagram">
               <Camera size={20} />
             </a>
             <a href={`mailto:${defaultSettings.email}`} className="text-[#F5F2E9] hover:text-[#CBA052] transition-colors" data-testid="header-email">
@@ -121,7 +115,7 @@ const Header = () => {
                 </Link>
               ))}
               <div className="flex items-center space-x-6 pt-4 border-t border-white/10">
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-[#F5F2E9] hover:text-[#CBA052] transition-colors">
+                <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="text-[#F5F2E9] hover:text-[#CBA052] transition-colors">
                   <Camera size={20} />
                 </a>
                 <a href={`mailto:${defaultSettings.email}`} className="text-[#F5F2E9] hover:text-[#CBA052] transition-colors">

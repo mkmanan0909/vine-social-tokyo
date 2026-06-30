@@ -1,31 +1,26 @@
 import { Link } from 'react-router-dom';
 import { Camera, Mail, Phone, MapPin } from 'lucide-react';
-import { brandLogo, defaultSettings } from '@/data/siteContent';
+import { brandLogo, defaultSettings, instagramUrl } from '@/data/siteContent';
 
 const Footer = () => {
   const settings = defaultSettings;
-  const igHandle = settings.instagram?.replace('@', '') || 'vinesocialtokyo';
 
   return (
     <footer className="bg-[#0F0F0F] border-t border-white/10 pt-24 pb-12" data-testid="footer">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           <div>
-            <div className="flex items-center gap-3 mb-6">
+            <div className="mb-6">
               <img
                 src={brandLogo}
                 alt="Vine Social Tokyo"
-                className="h-14 w-auto sm:h-16 object-contain object-left"
-                width="180"
-                height="64"
+                className="h-16 w-auto sm:h-20 max-w-[260px] object-contain object-left"
+                width="260"
+                height="80"
               />
-              <div className="hidden sm:flex flex-col min-w-0">
-                <span className="text-2xl font-heading font-light text-[#F5F2E9] tracking-widest truncate">VINE SOCIAL</span>
-                <span className="text-xs tracking-[0.3em] text-[#A3A199]">TOKYO</span>
-              </div>
             </div>
             <p className="text-[#A3A199] font-light leading-relaxed">
-              Modern Indian tapas experience inspired by spice, wine, and social dining.
+              {settings.tagline}
             </p>
           </div>
 
@@ -56,7 +51,7 @@ const Footer = () => {
             <p className="text-[#A3A199] font-light mb-8">{settings.opening_hours}</p>
             <div className="flex items-center space-x-6">
               <a
-                href={`https://instagram.com/${igHandle}`}
+                href={instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#F5F2E9] hover:text-[#CBA052] transition-colors"

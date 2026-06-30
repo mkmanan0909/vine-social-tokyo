@@ -1,15 +1,14 @@
 import { motion } from 'framer-motion';
 import { useMemo, useState } from 'react';
-import { defaultMenuItems } from '@/data/siteContent';
-
-const CATEGORIES = ['Small Plates', 'Tandoor', 'Mains', 'Drinks', 'Lunch Sets', 'Party Courses'];
+import { categoryImages, defaultMenuItems, MENU_CATEGORIES } from '@/data/siteContent';
 
 const Menu = () => {
-  const [selectedCategory, setSelectedCategory] = useState('Small Plates');
+  const [selectedCategory, setSelectedCategory] = useState(MENU_CATEGORIES[0]);
   const menuItems = useMemo(
     () => defaultMenuItems.filter((item) => item.category === selectedCategory),
     [selectedCategory],
   );
+  const categoryImage = categoryImages[selectedCategory];
 
   return (
     <div className="min-h-screen pt-32 pb-24" data-testid="menu-page">
@@ -25,18 +24,18 @@ const Menu = () => {
             Our Menu
           </h1>
           <p className="text-base font-light leading-relaxed text-[#A3A199] max-w-2xl mx-auto">
-            Explore our selection of modern Indian tapas, crafted to share and savor.
+            Small plates, grills, mains, and desserts — crafted for sharing from lunch through late night.
           </p>
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-16" data-testid="menu-categories">
-          {CATEGORIES.map((category) => (
+        <div className="flex flex-wrap justify-center gap-3 mb-12" data-testid="menu-categories">
+          {MENU_CATEGORIES.map((category) => (
             <button
               key={category}
               type="button"
               onClick={() => setSelectedCategory(category)}
               data-testid={`menu-category-${category.toLowerCase().replace(/\s+/g, '-')}`}
-              className={`px-6 py-3 rounded-sm text-sm tracking-[0.2em] font-light transition-colors ${
+              className={`px-4 py-2.5 rounded-sm text-xs sm:text-sm tracking-[0.15em] font-light transition-colors ${
                 selectedCategory === category
                   ? 'bg-[#CBA052] text-[#0F0F0F]'
                   : 'border border-white/10 text-[#F5F2E9] hover:border-[#CBA052]'
@@ -46,6 +45,26 @@ const Menu = () => {
             </button>
           ))}
         </div>
+
+        {categoryImage && (
+          <motion.div
+            key={selectedCategory}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className="relative mb-12 rounded-sm overflow-hidden border border-white/10 image-hover-zoom max-h-72"
+          >
+            <img
+              src={categoryImage}
+              alt={selectedCategory}
+              className="w-full h-72 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F]/90 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              <h2 className="text-2xl sm:text-3xl font-heading font-light text-[#F5F2E9]">{selectedCategory}</h2>
+            </div>
+          </motion.div>
+        )}
 
         {menuItems.length > 0 ? (
           <motion.div
@@ -68,18 +87,14 @@ const Menu = () => {
                     <img src={item.image_url} alt={item.name} className="w-full h-48 object-cover" />
                   </div>
                 )}
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-heading font-light text-[#F5F2E9]">{item.name}</h3>
-                  <span className="text-[#CBA052] font-light ml-4">{item.price}</span>
-                </div>
+                <h3 className="text-xl font-heading font-light text-[#F5F2E9] mb-2">{item.name}</h3>
                 <p className="text-base font-light leading-relaxed text-[#A3A199]">{item.description}</p>
               </motion.div>
             ))}
           </motion.div>
         ) : (
           <div className="text-center py-16 border border-white/10 rounded-sm">
-            <p className="text-[#A3A199] font-light mb-4">No items in this category yet.</p>
-            <p className="text-sm text-[#A3A199] font-light">Add dishes in <code className="text-[#CBA052]">frontend/src/data/siteContent.js</code>.</p>
+            <p className="text-[#A3A199] font-light">Ask your server for today&apos;s {selectedCategory} selection.</p>
           </div>
         )}
       </div>

@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
+import { defaultSettings } from '@/data/siteContent';
 
 const About = () => {
+  const { tagline } = defaultSettings;
+
   return (
     <div className="min-h-screen pt-32 pb-24" data-testid="about-page">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -15,9 +17,9 @@ const About = () => {
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-light tracking-tighter text-[#F5F2E9] mb-6" data-testid="about-title">
             About Vine Social Tokyo
           </h1>
+          <p className="text-lg text-[#CBA052] font-light max-w-3xl mx-auto">{tagline}</p>
         </motion.div>
 
-        {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -28,13 +30,16 @@ const About = () => {
           >
             <h2 className="text-3xl sm:text-4xl font-heading font-light text-[#CBA052] mb-4">Who We Are</h2>
             <p className="text-base font-light leading-relaxed text-[#A3A199]">
-              Vine Social Tokyo is more than just a restaurant - it's a celebration of culinary fusion where the bold, aromatic spices of India meet the convivial, shareable tradition of Spanish tapas.
+              Vine Social Tokyo is a café, wine bar, and social dining room in Nishikasai — where Indian flavours meet shareable plates and a warm, late-night atmosphere.
+            </p>
+            <p className="text-base font-light leading-relaxed text-[#CBA052]">
+              Café &amp; Lunch · Dinner &amp; Bar — From coffee to cocktails, we&apos;ve got your evening covered.
             </p>
             <p className="text-base font-light leading-relaxed text-[#A3A199]">
-              Founded by a team of passionate chefs and hospitality veterans, we set out to create a space in Tokyo where food lovers could gather, share, and explore flavors in a warm, sophisticated setting.
+              Whether you&apos;re in for a relaxed lunch, a long dinner with friends, or cocktails at the bar until 2 AM, we&apos;re here to make every visit feel social and unhurried.
             </p>
             <p className="text-base font-light leading-relaxed text-[#A3A199]">
-              Every dish is crafted with care, using the finest ingredients sourced locally and internationally, prepared with traditional techniques and presented with modern flair.
+              Every dish is crafted with care, using quality ingredients prepared with traditional techniques and presented with modern flair.
             </p>
           </motion.div>
 
@@ -43,29 +48,28 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="image-hover-zoom rounded-sm overflow-hidden"
+            className="image-hover-zoom rounded-sm overflow-hidden border border-white/10"
           >
             <img
-              src="https://images.unsplash.com/photo-1766832255363-c9f060ade8b0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwxfHx3aW5lJTIwZ2xhc3MlMjBkYXJrJTIwbHV4dXJ5JTIwcmVzdGF1cmFudHxlbnwwfHx8fDE3ODA2MDI3OTd8MA&ixlib=rb-4.1.0&q=85"
-              alt="Restaurant Interior"
-              className="w-full h-full object-cover"
+              src="/gallery/venue-interior.png"
+              alt="Vine Social Tokyo"
+              className="w-full h-full min-h-[400px] object-cover"
             />
           </motion.div>
         </div>
 
-        {/* Concept Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="image-hover-zoom rounded-sm overflow-hidden order-2 lg:order-1"
+            className="image-hover-zoom rounded-sm overflow-hidden border border-white/10 order-2 lg:order-1"
           >
             <img
-              src="https://images.pexels.com/photos/14009279/pexels-photo-14009279.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-              alt="Food Spread"
-              className="w-full h-full object-cover"
+              src="/gallery/dining-atmosphere.png"
+              alt="Dining at Vine Social Tokyo"
+              className="w-full h-full min-h-[400px] object-cover"
             />
           </motion.div>
 
@@ -78,18 +82,17 @@ const About = () => {
           >
             <h2 className="text-3xl sm:text-4xl font-heading font-light text-[#CBA052] mb-4">Our Concept</h2>
             <p className="text-base font-light leading-relaxed text-[#A3A199]">
-              The concept behind Vine Social is simple: food tastes better when shared. Inspired by the Spanish tapas culture and India's rich culinary heritage, we've created a menu designed for exploration and conversation.
+              Food tastes better when shared. Our menu spans social bites, grills, mains, and desserts — designed for exploration from lunch through late night.
             </p>
             <p className="text-base font-light leading-relaxed text-[#A3A199]">
-              Our small plates allow you to sample a variety of flavors, spices, and textures throughout your meal. Paired with carefully selected wines and handcrafted cocktails, every visit becomes a journey of discovery.
+              Start with coffee or a light lunch, return for dinner and wine, and stay for cocktails at the bar. Paired with carefully selected wines and handcrafted pours, every visit becomes a journey.
             </p>
             <p className="text-base font-light leading-relaxed text-[#A3A199]">
-              The warm, intimate atmosphere of our space reflects the philosophy of social dining - where strangers become friends over a shared love of great food and wine.
+              The warm atmosphere of our space reflects social dining — where friends gather over exceptional food, wine, and conversation.
             </p>
           </motion.div>
         </div>
 
-        {/* Why Different Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -97,24 +100,24 @@ const About = () => {
           transition={{ duration: 0.8 }}
           className="bg-[#1B1C1A] border border-white/10 rounded-sm p-12 text-center"
         >
-          <h2 className="text-3xl sm:text-4xl font-heading font-light text-[#CBA052] mb-8">Why We're Different</h2>
+          <h2 className="text-3xl sm:text-4xl font-heading font-light text-[#CBA052] mb-8">Why We&apos;re Different</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <h3 className="text-xl font-heading font-light text-[#F5F2E9] mb-3">Fusion Excellence</h3>
+              <h3 className="text-xl font-heading font-light text-[#F5F2E9] mb-3">All Day &amp; Into the Night</h3>
               <p className="text-base font-light leading-relaxed text-[#A3A199]">
-                We honor traditional Indian recipes while embracing modern tapas-style presentation and dining.
+                Lunch from 11 AM, dinner from 5 PM, and bar service until 2 AM — one venue for your whole day.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-heading font-light text-[#F5F2E9] mb-3">Curated Wine List</h3>
+              <h3 className="text-xl font-heading font-light text-[#F5F2E9] mb-3">Curated Wine &amp; Bar</h3>
               <p className="text-base font-light leading-relaxed text-[#A3A199]">
-                Our sommelier has hand-selected wines that perfectly complement the complex spices of our cuisine.
+                From espresso tonic to wine and cocktails — pours chosen to complement our menu.
               </p>
             </div>
             <div>
               <h3 className="text-xl font-heading font-light text-[#F5F2E9] mb-3">Social Atmosphere</h3>
               <p className="text-base font-light leading-relaxed text-[#A3A199]">
-                Designed for sharing, our space encourages connection and conversation over exceptional food.
+                Designed for sharing in the heart of Nishikasai — connection over exceptional food.
               </p>
             </div>
           </div>

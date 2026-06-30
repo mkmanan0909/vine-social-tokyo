@@ -18,38 +18,38 @@ const Gallery = () => {
             Gallery
           </h1>
           <p className="text-base font-light leading-relaxed text-[#A3A199] max-w-2xl mx-auto">
-            Experience the ambiance, flavors, and moments that define Vine Social Tokyo.
+            A glimpse of our space, plates, and pours — from café hours through late-night bar.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {images.map((image, idx) => {
-            const isTall = idx % 5 === 0;
-            const isWide = idx % 7 === 0 && idx !== 0;
-
-            return (
-              <motion.div
-                key={image.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.05 }}
-                className={`relative image-hover-zoom rounded-sm overflow-hidden ${isTall ? 'sm:row-span-2' : ''} ${isWide ? 'sm:col-span-2' : ''}`}
-                data-testid={`gallery-item-${idx}`}
-              >
-                <img
-                  src={image.url}
-                  alt={image.caption || `Gallery image ${idx + 1}`}
-                  className={`w-full object-cover ${isTall ? 'h-[600px]' : isWide ? 'h-[400px]' : 'h-[300px]'}`}
-                />
-                {image.caption && (
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                    <p className="text-sm font-light text-[#F5F2E9]">{image.caption}</p>
-                  </div>
-                )}
-              </motion.div>
-            );
-          })}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {images.map((image, idx) => (
+            <motion.div
+              key={image.id}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: idx * 0.06 }}
+              className={`relative image-hover-zoom rounded-sm overflow-hidden border border-white/10 ${
+                idx === 0 ? 'sm:col-span-2 lg:col-span-2' : ''
+              }`}
+              data-testid={`gallery-item-${idx}`}
+            >
+              <img
+                src={image.url}
+                alt={image.caption || `Gallery image ${idx + 1}`}
+                className={`w-full object-cover ${idx === 0 ? 'h-[320px] sm:h-[400px]' : 'h-[280px]'}`}
+              />
+              {image.caption && (
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 to-transparent px-4 py-3">
+                  <p className="text-sm font-light text-[#F5F2E9]">{image.caption}</p>
+                  {image.category && (
+                    <p className="text-xs tracking-wider text-[#CBA052] mt-0.5">{image.category}</p>
+                  )}
+                </div>
+              )}
+            </motion.div>
+          ))}
         </div>
       </div>
     </div>

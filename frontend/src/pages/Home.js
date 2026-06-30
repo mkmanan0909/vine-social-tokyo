@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { defaultSettings } from '@/data/siteContent';
+import { brandLogo, defaultSettings } from '@/data/siteContent';
 
 const Home = () => {
   const settings = defaultSettings;
@@ -8,29 +8,36 @@ const Home = () => {
   return (
     <div className="min-h-screen" data-testid="home-page">
       <section className="relative h-screen flex items-center justify-center overflow-hidden" data-testid="hero-section">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[#0F0F0F]">
           <img
-            src="https://images.unsplash.com/photo-1767277680127-dc94441d576c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwzfHx3aW5lJTIwZ2xhc3MlMjBkYXJrJTIwbHV4dXJ5JTIwcmVzdGF1cmFudHxlbnwwfHx8fDE3ODA2MDI3OTd8MA&ixlib=rb-4.1.0&q=85"
-            alt="Vine Social Tokyo"
-            className="w-full h-full object-cover"
+            src={brandLogo}
+            alt=""
+            aria-hidden
+            className="absolute inset-0 w-full h-full object-contain opacity-[0.22] scale-125 pointer-events-none select-none"
           />
-          <div className="absolute inset-0 hero-overlay"></div>
+          <div className="absolute inset-0 hero-overlay" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#0F0F0F_72%)]" />
         </div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="relative z-10 text-center px-6"
+          className="relative z-10 text-center px-6 max-w-4xl"
         >
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-light tracking-tighter text-[#F5F2E9] mb-6" data-testid="hero-title">
+          <img
+            src={brandLogo}
+            alt="Vine Social Tokyo"
+            className="h-24 sm:h-32 lg:h-40 w-auto mx-auto mb-8 object-contain"
+          />
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-light tracking-tighter text-[#F5F2E9] mb-6" data-testid="hero-title">
             VINE SOCIAL TOKYO
           </h1>
           <p className="text-lg sm:text-xl text-[#CBA052] tracking-[0.3em] font-light mb-4" data-testid="hero-subtitle">
             CAFE • WINE • SMALL PLATES
           </p>
           <p className="text-base sm:text-lg text-[#A3A199] font-light mb-12 max-w-2xl mx-auto" data-testid="hero-description">
-            Indian flavours with a modern tapas experience
+            {settings.tagline}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
             <Link to="/menu" className="btn-primary" data-testid="hero-view-menu-btn">
@@ -59,11 +66,11 @@ const Home = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="image-hover-zoom rounded-sm overflow-hidden"
+              className="image-hover-zoom rounded-sm overflow-hidden border border-white/10"
             >
               <img
-                src="https://images.unsplash.com/photo-1766832255363-c9f060ade8b0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwxfHx3aW5lJTIwZ2xhc3MlMjBkYXJrJTIwbHV4dXJ5JTIwcmVzdGF1cmFudHxlbnwwfHx8fDE3ODA2MDI3OTd8MA&ixlib=rb-4.1.0&q=85"
-                alt="Restaurant Interior"
+                src="/gallery/venue-interior.png"
+                alt="Vine Social Tokyo interior"
                 className="w-full h-[500px] object-cover"
               />
             </motion.div>
@@ -75,13 +82,16 @@ const Home = () => {
             >
               <p className="text-xs tracking-[0.3em] uppercase text-[#CBA052] mb-4 font-semibold">ABOUT US</p>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-light tracking-tight text-[#F5F2E9] mb-6">
-                Modern Indian Tapas Experience
+                Café, Wine & Social Dining
               </h2>
+              <p className="text-base font-light leading-relaxed text-[#CBA052] mb-6">
+                {settings.tagline}
+              </p>
               <p className="text-base font-light leading-relaxed text-[#A3A199] mb-6">
-                Inspired by spice, wine, and social dining, Vine Social Tokyo brings together the vibrant flavors of India with the intimate, shareable experience of Spanish tapas.
+                Inspired by spice, wine, and social dining, Vine Social Tokyo brings together vibrant Indian flavours with shareable plates in Nishikasai.
               </p>
               <p className="text-base font-light leading-relaxed text-[#A3A199] mb-8">
-                Located in the heart of Tokyo, we offer a unique culinary journey where traditional Indian techniques meet contemporary plating and presentation.
+                Join us for lunch, linger over dinner, or stay late for cocktails at the bar.
               </p>
               <Link to="/about" className="btn-secondary" data-testid="about-learn-more-btn">
                 LEARN MORE
@@ -102,19 +112,19 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: 'Small Plates & Tapas',
-                desc: 'Shareable bites bursting with flavor',
-                img: 'https://images.pexels.com/photos/14009279/pexels-photo-14009279.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                title: 'Social Bites',
+                desc: 'Shareable plates from samosa to tartare',
+                img: '/gallery/Samosa%20Basket.png',
               },
               {
-                title: 'Tandoor Specialties',
-                desc: 'Clay oven perfection with authentic spices',
-                img: 'https://images.pexels.com/photos/31860145/pexels-photo-31860145.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                title: 'Fire & Grill',
+                desc: 'From the grill — bold, aromatic, made to share',
+                img: '/gallery/Seekh%20kabab.png',
               },
               {
-                title: 'Wine & Cocktails',
-                desc: 'Curated pairings for every dish',
-                img: 'https://images.pexels.com/photos/880424/pexels-photo-880424.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                title: 'Coffee to Cocktails',
+                desc: 'Espresso by day, wine and pours by night',
+                img: '/gallery/bar.jpeg',
               },
             ].map((item, idx) => (
               <motion.div
@@ -126,7 +136,7 @@ const Home = () => {
                 className="menu-card image-hover-zoom"
                 data-testid={`menu-highlight-${idx}`}
               >
-                <img src={item.img} alt={item.title} className="w-full h-64 object-cover rounded-sm mb-4" />
+                <img src={item.img} alt={item.title} className="w-full h-64 object-cover rounded-sm mb-4 border border-white/10" />
                 <h3 className="text-xl sm:text-2xl font-heading font-light text-[#CBA052] mb-2">{item.title}</h3>
                 <p className="text-base font-light leading-relaxed text-[#A3A199]">{item.desc}</p>
               </motion.div>
